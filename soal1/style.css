@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Red+Hat+Display&display=swap');
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: ghostwhite;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+.board {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    box-shadow: 10px 10px #a8a6a6;
+    position: relative;
+}
+
+.tile {
+    width: calc(100% / 3);
+    height: calc(100% / 3);
+    border: 1px solid rgb(110, 109, 109);
+    position: relative;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.tile:first-child, .tile:nth-child(2), .tile:nth-child(3) {
+    border-top: none;
+}
+
+.tile:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.tile:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.tile:last-child, .tile:nth-child(7), .tile:nth-child(8) {
+    border-bottom: none;
+}
+
+.fill-x, .fill-o {
+    cursor: not-allowed;
+}
+
+.fill-x::before, .fill-x::after {
+    content: "";
+    position: absolute;
+    left: 48px;
+    top: 10px;
+    width: 4px;
+    height: 80px;
+    background-color: rgb(110, 109, 109);
+}
+
+.fill-x::before {
+    transform: rotate(45deg);
+}
+
+.fill-x::after {
+    transform: rotate(-45deg);
+}
+
+.fill-o::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 4px solid rgb(110, 109, 109);
+    cursor: not-allowed;
+}
+
+.draw::after, .win-o::after, .win-x::after {
+    position: absolute;
+    top: 36.5%;
+    left: 0;
+    color: rgb(255, 0, 0);
+    font-size: 5rem;
+    font-weight: bolder;
+    background-color: rgb(252, 244, 244);
+    opacity: 0.9;
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+}
+
+.draw::after {
+    content: 'It’s a Draw!';
+    top: 24%;
+}
+
+.win-x::after {
+    content: 'X Wins!';
+}
+
+.win-o::after {
+    content: 'O Wins!';
+}
+
+.game-over::before {
+    content: 'Double click to start again!';
+    position: fixed; top: 8%;
+    font-size: 1.65rem;
+    color: #a04e4e;
+    font-weight: bold;
+    animation: restart 0.5s infinite alternate ease-in;
+}
+
+/* @keyframes restart {
+    from {top: 5%;}
+    to {top: 8%;}
+}  */
